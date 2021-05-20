@@ -21,3 +21,7 @@ async def get_customer(db: Session = Depends(get_db)):
         content = f'<h1>Welcome {x.CompanyName} </h1>'
         new_str += content
     return HTMLResponse(content=new_str)
+
+@router.get("/customers1", response_model=List[schemas.Customer])
+async def get_customers(companyName: str, db: Session = Depends(get_db)):
+    return crud.get_params(companyName, db)
