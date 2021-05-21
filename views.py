@@ -1,4 +1,5 @@
-from starlette.responses import HTMLResponse
+from starlette import status
+from starlette.responses import HTMLResponse 
 from database import get_db
 from typing import List
 from fastapi import FastAPI, APIRouter, Depends
@@ -25,3 +26,7 @@ async def get_customer(db: Session = Depends(get_db)):
 @router.get("/customers1", response_model=List[schemas.Customer])
 async def get_customers(companyName: str, db: Session = Depends(get_db)):
     return crud.get_params(companyName, db)
+
+@router.post("/customers", status_code=status.HTTP_201_CREATED)
+async def post_customers(customer_new: schemas.CustomerNew, db: Session = Depends(get_db)):
+    return crud.post_customers(customer_new, db)

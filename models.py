@@ -8,6 +8,7 @@ from sqlalchemy import (
     String,
     Table,
     Text,
+    CHAR
 )
 #from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
@@ -18,7 +19,7 @@ from database import Base
 class Customer(Base):
     __tablename__ = "customers"
 
-    CustomerID = Column(NullType, primary_key=True)
+    CustomerID = Column(CHAR(6), primary_key=True)
     CompanyName = Column(String(40), nullable=False)
     ContactName = Column(String(30))
     ContactTitle = Column(String(30))
