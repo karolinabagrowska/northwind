@@ -29,4 +29,30 @@ def post_customers(customer_new: schemas.CustomerNew, db: Session):
     db.refresh(customer_add)
 
     return customer_add
+
+def post_employees(employee_new: schemas.Employees, db: Session):
+    employee_add = models.Employee(
+        LastName = employee_new.LastName,
+        FirstName = employee_new.FirstName,
+        Title = employee_new.Title,
+        TitleOfCourtesy = employee_new.TitleOfCourtesy,
+        BirthDate = employee_new.BirthDate,
+        HireDate = employee_new.HireDate,
+        Address = employee_new.Address,
+        City = employee_new.City,
+        Region = employee_new.Region,
+        PostalCode = employee_new.PostalCode,
+        Country = employee_new.Country,
+        HomePhone = employee_new.HomePhone,
+        Extension = employee_new.Extension,
+        Photo = employee_new.Photo,
+        Notes = employee_new.Notes,
+        ReportsTo = employee_new.ReportsTo,
+        PhotoPath = employee_new.PhotoPath
+    )
+    db.add(employee_add)
+    db.commit()
+    db.refresh(employee_add)
+
+    return employee_add
     

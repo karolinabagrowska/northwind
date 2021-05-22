@@ -30,3 +30,8 @@ async def get_customers(companyName: str, db: Session = Depends(get_db)):
 @router.post("/customers", status_code=status.HTTP_201_CREATED)
 async def post_customers(customer_new: schemas.CustomerNew, db: Session = Depends(get_db)):
     return crud.post_customers(customer_new, db)
+
+@router.post("/employees", status_code=status.HTTP_201_CREATED)
+async def post_employees(employee_new: schemas.Employees, db: Session = Depends(get_db)):
+    return crud.post_employees(employee_new, db)
+    

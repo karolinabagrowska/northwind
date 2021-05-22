@@ -30,3 +30,25 @@ class Customer(Base):
     Country = Column(String(15))
     Phone = Column(String(24))
     Fax = Column(String(24))
+
+class Employee(Base):
+    __tablename__ = "employees"
+
+    EmployeeID = Column(SmallInteger, primary_key=True)
+    LastName = Column(String(20), nullable=False)
+    FirstName = Column(String(10), nullable=False)
+    Title = Column(String(30))
+    TitleOfCourtesy = Column(String(25))
+    BirthDate = Column(Date)
+    HireDate = Column(Date)
+    Address = Column(String(60))
+    City = Column(String(15))
+    Region = Column(String(15))
+    PostalCode = Column(String(10))
+    Country = Column(String(15))
+    HomePhone = Column(String(24))
+    Extension = Column(String(4))
+    Photo = Column(LargeBinary)
+    Notes = Column(Text)
+    ReportsTo = Column(SmallInteger)
+    PhotoPath = Column(String(255))
