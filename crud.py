@@ -5,6 +5,11 @@ import models,schemas
 def get_customers(db: Session):
     return db.query(models.Customer).all()
 
+def get_customer(db: Session, id: str):
+    return (
+        db.query(models.Customer).filter(models.Customer.CustomerID == id).first()
+    )
+
 def get_params(companyName: str, db: Session):
     companies = db.query(models.Customer).filter(models.Customer.CompanyName == companyName).all()
 
@@ -29,6 +34,12 @@ def post_customers(customer_new: schemas.CustomerNew, db: Session):
     db.refresh(customer_add)
 
     return customer_add
+
+def delete_customer(db: Session, customer_id: str):
+    id_delete = db.query(models.Customer).filter(models.Customer.CustomerID == customer_id).first()
+    db.delete(id_delete)
+    db.commit()
+    return
 
 def post_employees(employee_new: schemas.Employees, db: Session):
     employee_add = models.Employee(
@@ -55,4 +66,6 @@ def post_employees(employee_new: schemas.Employees, db: Session):
     db.refresh(employee_add)
 
     return employee_add
+
+
     
